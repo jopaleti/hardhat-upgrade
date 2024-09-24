@@ -1,4 +1,4 @@
-const { network, ethers } = require("hardhat");
+const { network, ethers, getNamedAccounts } = require("hardhat");
 const { developmentChains } = require("../helper-hardhat-config");
 const { verify } = require("../utils/verify");
 
@@ -6,8 +6,8 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deploy, log } = deployments;
     const { deployer } = await getNamedAccounts();
 
-    log("----------------------------------------------");
-    const box = await deploy("Box", {
+    log("--------------------------------------------");
+    const box = await deploy("BoxV2", {
         from: deployer,
         args: [],
         log: true,
@@ -27,11 +27,8 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     ) {
         log("Verifying...");
         await verify(box.address, []);
-        // const boxAddress = (await ethers.getContractAt("Box_Implementation"))
-        //     .address;
-        // await verify(boxAddress, []);
     }
-    log("------------------------------------------------");
+    log("----------------------------------------------");
 };
 
-module.exports.tags = ["all", "box"];
+module.exports.tags = ["all", "boxv2"];

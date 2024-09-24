@@ -22,6 +22,6 @@ contract BoxV2 {
 
     function increment() public {
         value = value + 1;
-        emit ValueChanged(value)
+        emit ValueChanged(value);
     }
 }
