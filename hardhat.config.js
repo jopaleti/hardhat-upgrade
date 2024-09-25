@@ -1,16 +1,26 @@
-require("@nomicfoundation/hardhat-toolbox");
-require("@nomicfoundation/hardhat-verify");
-// require("@nomiclabs/hardhat-etherscan");
-require("hardhat-contract-sizer");
-require("solidity-coverage");
-require("dotenv").config();
-require("hardhat-gas-reporter");
+// require("@nomicfoundation/hardhat-toolbox");
+// require("@nomicfoundation/hardhat-verify");
+// // require("@nomiclabs/hardhat-etherscan");
+// require("hardhat-contract-sizer");
+// require("solidity-coverage");
+// require("dotenv").config();
+// require("hardhat-gas-reporter");
+// require("hardhat-deploy");
+// require("@openzeppelin/hardhat-upgrades");
+
+require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 require("hardhat-deploy");
+require("solidity-coverage");
+require("hardhat-gas-reporter");
+require("hardhat-contract-sizer");
+require("dotenv").config();
+require("@openzeppelin/hardhat-upgrades");
 
 const MAINNET_RPC_URL =
     process.env.MAINNET_RPC_URL || process.env.ALCHEMY_MAINNET_RPC_URL || "";
 const SEPOLIA_RPC_URL =
-    process.env.SEPOLIA_RPC_URL || "https://www.sepolia.com/example";
+    process.env.SEPOLIA_RPC_URL || "https://www.sepolia.com/    example";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0XKEY";
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Key";
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || "key";
@@ -34,16 +44,19 @@ module.exports = {
         hardhat: {
             chainId: 31337,
         },
-        // localhost: {
-        //     url: "http://127.0.0.1:8545/",
-        //     // accounts: Thanks hardhat!
-        //     chainId: 31337,
-        // },
+        localhost: {
+            url: "http://127.0.0.1:8545/",
+            // accounts: Thanks hardhat!
+            chainId: 31337,
+        },
     },
     solidity: {
         compilers: [
             {
                 version: "0.8.7",
+            },
+            {
+                version: "0.8.8",
             },
             {
                 version: "0.8.20",
