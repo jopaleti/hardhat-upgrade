@@ -1,22 +1,30 @@
 // Manual way
 
-const { getNamedAccounts, ethers } = require("hardhat");
+const { getNamedAccounts, ethers, deployments } = require("hardhat");
 
 async function main() {
-    // const { deployer } = await getNamedAccounts();
+    // const { deploy, log } = deployments;
+    const { deployer } = await getNamedAccounts();
     // const [account] = await ethers.getSigners();
     // const deployer = account;
-    console.log(await ethers.getSigners())
+
+    const boxProxyAdmin = await ethers.getContractAt("BoxProxyAdmin", deployer);
+    // const transparentProxy = await ethers.getContractAt("Box_Proxy");
     // const boxProxyAdmin = await ethers.getContract("BoxProxyAdmin", deployer);
-    // const transparentProxy = await ethers.getContractAt("Box_Proxy", deployer);
-    // const proxyBoxV1 = await ethers.getContract(
-    //     "Box",
-    //     transparentProxy.address,
-    // );
+    // const transparentProxy = await ethers.getContract("Box_Proxy");
+
+    // const proxyBoxV1Contract = await deployments.get("Box");
+    // const proxyBoxV1Address = proxyBoxV1Contract.address;
+
+    // const proxyBoxV1 = await ethers.getContractAt("Box", proxyBoxV1Address);
     // const versionV1 = await proxyBoxV1.version();
     // console.log(versionV1);
 
-    // const boxV2 = await ethers.getContractAt("BoxV2", deployer);
+    // const proxyBoxV2Contract = await deployments.get("BoxV2");
+    // const proxyBoxV2Address = proxyBoxV2Contract.address;
+    // const boxV2 = await ethers.getContractAt("BoxV2", proxyBoxV2Address);
+
+    // // Error starts from here...
     // const upgradeTx = await boxProxyAdmin.upgrade(
     //     transparentProxy.address,
     //     boxV2.address,

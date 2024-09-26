@@ -7,7 +7,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deployer } = await getNamedAccounts();
 
     log("--------------------------------------------");
-    const box = await deploy("BoxV2", {
+    const boxv2 = await deploy("BoxV2", {
         from: deployer,
         args: [],
         log: true,
@@ -26,9 +26,11 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         process.env.ETHERSCAN_API_KEY
     ) {
         log("Verifying...");
-        await verify(box.address, []);
+        await verify(boxv2.address, []);
     }
     log("----------------------------------------------");
 };
 
 module.exports.tags = ["all", "boxv2"];
+
+// "@nomiclabs/hardhat-ethers": "^2.0.0",
